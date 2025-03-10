@@ -1,6 +1,6 @@
 // After debug
 document.addEventListener("DOMContentLoaded", function () {
-    fetch('header.html')  
+    fetch('header.html')  // Fetch the header file
         .then(response => {
             if (!response.ok) {
                 throw new Error("Failed to load header");
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
-            setupNavbar();
+            setupNavbar(); // Call function to activate navbar scripts
         })
         .catch(error => console.error('Error loading header:', error));
 });
@@ -57,7 +57,7 @@ let autoScrollInterval;
 let isDragging = false;
 let startX;
 let scrollLeft;
-const reviewWidth = carousel.querySelector('.review').offsetWidth + 20; 
+const reviewWidth = carousel.querySelector('.review').offsetWidth + 20; // Include gap
 
 // Scroll functions
 function scrollLeftHandler() {
@@ -76,7 +76,7 @@ function startAutoScroll() {
         } else {
             scrollRightHandler();
         }
-    }, 5000); 
+    }, 5000); // Scroll every 3 seconds
 }
 
 function stopAutoScroll() {
@@ -88,25 +88,25 @@ carousel.addEventListener('mousedown', (e) => {
     isDragging = true;
     startX = e.pageX - carousel.offsetLeft;
     scrollLeft = carousel.scrollLeft;
-    stopAutoScroll(); 
+    stopAutoScroll(); // Stop auto-scroll while dragging
 });
 
 carousel.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - carousel.offsetLeft;
-    const walk = (x - startX) * 1.5; 
+    const walk = (x - startX) * 1.5; // Adjust sensitivity
     carousel.scrollLeft = scrollLeft - walk;
 });
 
 carousel.addEventListener('mouseup', () => {
     isDragging = false;
-    startAutoScroll(); 
+    startAutoScroll(); // Resume auto-scroll after dragging
 });
 
 carousel.addEventListener('mouseleave', () => {
     isDragging = false;
-    startAutoScroll(); 
+    startAutoScroll(); // Resume auto-scroll after mouse leaves
 });
 
 // Touch support for mobile devices
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Open WhatsApp link when chat option is clicked
     chatOption.addEventListener("click", function () {
-        window.open("https://wa.me/1234567890", "_blank"); 
+        window.open("https://wa.me/1234567890", "_blank"); // Replace with your WhatsApp number
     });
 });
 
@@ -180,9 +180,10 @@ function requestService() {
 
 // FAQ section
 document.addEventListener("DOMContentLoaded", function () {
+    // Function to animate elements when they appear in the viewport
     function animateOnScroll(selector, animationClasses) {
         const elements = document.querySelectorAll(selector);
-        if (elements.length === 0) return; 
+        if (elements.length === 0) return; // Prevent errors if no elements exist
 
         elements.forEach((element, index) => {
             const animationType = animationClasses[index % animationClasses.length];
@@ -236,10 +237,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let loginForm = document.getElementById("login-form");
     if (loginForm) {
         loginForm.addEventListener("submit", function (event) {
-            event.preventDefault(); 
+            event.preventDefault(); // Prevent form submission
             let errorMessage = document.getElementById("error-message");
             if (errorMessage) {
-                errorMessage.style.display = "block"; 
+                errorMessage.style.display = "block"; // Show error message
             }
         });
     }
